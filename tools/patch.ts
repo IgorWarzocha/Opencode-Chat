@@ -6,7 +6,9 @@ import { tool } from "@opencode-ai/plugin"
 import * as path from "path"
 import { parsePatch, applyHunksToFiles, type Hunk } from "../util/patch.js"
 
-export function createChatPatch(baseDir: string) {
+import type { ChatTool } from "../util/types"
+
+export function createChatPatch(baseDir: string): ChatTool {
   const run = async (args: { patchText: string }) => {
     const { hunks } = parsePatch(args.patchText)
 
@@ -29,7 +31,7 @@ export function createChatPatch(baseDir: string) {
 
   return {
     id: "chat_patch",
-    run,
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Apply a patch to create, update, or delete files.
 

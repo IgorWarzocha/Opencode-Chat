@@ -9,7 +9,9 @@ import { tool } from "@opencode-ai/plugin"
 import { resolvePath } from "../util/paths.js"
 import { replaceOnce } from "../util/text.js"
 
-export function createChatEdit(baseDir: string, repoRoot: string) {
+import type { ChatTool } from "../util/types"
+
+export function createChatEdit(baseDir: string, repoRoot: string): ChatTool {
   const run = async (args: { filePath: string; oldString: string; newString: string; replaceAll?: boolean }) => {
     const filePath = resolvePath(baseDir, args.filePath)
     const content = await fs.readFile(filePath, "utf-8").catch(() => {
@@ -23,7 +25,7 @@ export function createChatEdit(baseDir: string, repoRoot: string) {
 
   return {
     id: "chat_edit",
-    run,
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Replace text in files.
 

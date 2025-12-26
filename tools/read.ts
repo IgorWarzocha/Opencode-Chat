@@ -9,7 +9,9 @@ import { DEFAULT_READ_LIMIT } from "../util/constants.js"
 import { resolvePath, isBlockedEnvPath, isImageExtension, isBinaryFile } from "../util/paths.js"
 import { trimLine } from "../util/text.js"
 
-export function createChatRead(baseDir: string) {
+import type { ChatTool } from "../util/types"
+
+export function createChatRead(baseDir: string): ChatTool {
   const run = async (args: { filePath: string; offset?: number; limit?: number }) => {
     const filePath = resolvePath(baseDir, args.filePath)
     if (isBlockedEnvPath(filePath)) {
@@ -52,7 +54,7 @@ export function createChatRead(baseDir: string) {
 
   return {
     id: "chat_read",
-    run,
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Read file contents.
 

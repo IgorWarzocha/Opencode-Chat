@@ -6,7 +6,9 @@
 import { tool } from "@opencode-ai/plugin"
 import { MAX_OUTPUT_LENGTH } from "../util/constants.js"
 
-export function createChatBash(baseDir: string) {
+import type { ChatTool } from "../util/types"
+
+export function createChatBash(baseDir: string): ChatTool {
   const run = async (args: { command: string; timeout?: number; description: string }) => {
     if (!args.command) {
       throw new Error("command is required")
@@ -41,7 +43,7 @@ export function createChatBash(baseDir: string) {
 
   return {
     id: "chat_bash",
-    run,
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Run shell commands.
 

@@ -6,8 +6,9 @@
 import * as fs from "fs/promises"
 import * as path from "path"
 import { tool } from "@opencode-ai/plugin"
+import type { ChatTool } from "../util/types"
 
-export function createChatRemember(baseDir: string) {
+export function createChatRemember(baseDir: string): ChatTool {
   const agentsPath = path.join(baseDir, "AGENTS.md")
 
   const run = async (args: { memory: string }) => {
@@ -47,7 +48,7 @@ export function createChatRemember(baseDir: string) {
 
   return {
     id: "chat_remember",
-    run,
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Save something to long-term memory. Use this to remember:
 - User preferences (e.g., "User prefers concise responses")

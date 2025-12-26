@@ -30,7 +30,9 @@ function formatMatches(matches: Match[], truncated: boolean) {
   return outputLines.join("\n")
 }
 
-export function createChatGrep(baseDir: string) {
+import type { ChatTool } from "../util/types"
+
+export function createChatGrep(baseDir: string): ChatTool {
   const run = async (args: { pattern: string; path?: string; include?: string }) => {
     const searchRoot = resolvePath(baseDir, args.path ?? baseDir)
     let matcher: RegExp
@@ -69,7 +71,7 @@ export function createChatGrep(baseDir: string) {
 
   return {
     id: "chat_grep",
-    run,
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Search file contents using regex.
 

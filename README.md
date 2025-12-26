@@ -6,6 +6,8 @@ A conversational coding assistant plugin for OpenCode with semantic code search.
 
 **Chatifier** transforms OpenCode into a more conversational experience with two specialized agents and local semantic search.
 
+![opencode-chat](https://github.com/user-attachments/assets/d489422c-a5a6-4003-b955-adf9b17260c2)
+
 ### Chat Agents
 
 | Agent         | Purpose                                              |

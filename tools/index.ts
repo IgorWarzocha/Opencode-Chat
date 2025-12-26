@@ -4,7 +4,8 @@
  */
 import { createChatBash } from "./bash"
 import { createChatRead } from "./read"
-import { createChatPatch } from "./patch"
+import { createChatEdit } from "./edit"
+import { createChatWrite } from "./write"
 import { createChatGlob } from "./glob"
 import { createChatGrep } from "./grep"
 import { createChatTodo } from "./todo"
@@ -16,7 +17,8 @@ import type { ToolDefinition } from "@opencode-ai/plugin"
 
 export function createChatTools(baseDir: string, repoRoot: string, todoPath: string) {
   const read = createChatRead(baseDir)
-  const patch = createChatPatch(baseDir)
+  const edit = createChatEdit(baseDir, repoRoot)
+  const write = createChatWrite(baseDir, repoRoot)
   const glob = createChatGlob(baseDir)
   const grep = createChatGrep(baseDir)
   const bash = createChatBash(baseDir)
@@ -27,7 +29,8 @@ export function createChatTools(baseDir: string, repoRoot: string, todoPath: str
 
   const runners: Record<string, (p: Record<string, unknown>) => Promise<string>> = {
     [read.id]: (p) => read.run(p as Parameters<typeof read.run>[0]),
-    [patch.id]: (p) => patch.run(p as Parameters<typeof patch.run>[0]),
+    [edit.id]: (p) => edit.run(p as Parameters<typeof edit.run>[0]),
+    [write.id]: (p) => write.run(p as Parameters<typeof write.run>[0]),
     [glob.id]: (p) => glob.run(p as Parameters<typeof glob.run>[0]),
     [grep.id]: (p) => grep.run(p as Parameters<typeof grep.run>[0]),
     [bash.id]: (p) => bash.run(p as Parameters<typeof bash.run>[0]),
@@ -41,7 +44,8 @@ export function createChatTools(baseDir: string, repoRoot: string, todoPath: str
 
   const tools: Record<string, ToolDefinition> = {
     [read.id]: read.tool,
-    [patch.id]: patch.tool,
+    [edit.id]: edit.tool,
+    [write.id]: write.tool,
     [glob.id]: glob.tool,
     [grep.id]: grep.tool,
     [bash.id]: bash.tool,

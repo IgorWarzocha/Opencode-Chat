@@ -4,7 +4,7 @@
  */
 import * as path from "path"
 import { tool } from "@opencode-ai/plugin"
-import { semanticSearch } from "../semantic"
+import { semanticSearch } from "../semantic/index.js"
 
 const DEFAULT_LIMIT = 5
 

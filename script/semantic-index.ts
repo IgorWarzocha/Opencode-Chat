@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 /**
  * Manual semantic indexer.
  * Usage: npx @howaboua/opencode-chat opencode-chat-semantic-index --mode changed|full
@@ -6,7 +6,7 @@
  */
 import * as path from "path"
 import * as fs from "fs/promises"
-import { ensureSemanticIndex } from "../semantic"
+import { ensureSemanticIndex } from "../semantic/index.js"
 
 async function findRepoRoot(start: string): Promise<string> {
   let dir = start

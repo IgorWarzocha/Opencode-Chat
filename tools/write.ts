@@ -6,7 +6,7 @@
 import * as fs from "fs/promises"
 import path from "path"
 import { tool } from "@opencode-ai/plugin"
-import { resolvePath } from "../util/paths"
+import { resolvePath } from "../util/paths.js"
 
 export function createChatWrite(baseDir: string, repoRoot: string) {
   const run = async (args: { content: string; filePath: string }) => {

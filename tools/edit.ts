@@ -6,8 +6,8 @@
 import * as fs from "fs/promises"
 import path from "path"
 import { tool } from "@opencode-ai/plugin"
-import { resolvePath } from "../util/paths"
-import { replaceOnce } from "../util/text"
+import { resolvePath } from "../util/paths.js"
+import { replaceOnce } from "../util/text.js"
 
 export function createChatEdit(baseDir: string, repoRoot: string) {
   const run = async (args: { filePath: string; oldString: string; newString: string; replaceAll?: boolean }) => {

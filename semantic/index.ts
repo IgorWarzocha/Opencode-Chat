@@ -5,10 +5,10 @@
 import * as path from "path"
 import * as fs from "fs/promises"
 import { Database } from "bun:sqlite"
-import { chunkFile } from "./chunker"
-import { getEmbedder, encodeEmbedding, decodeEmbedding, cosineSimilarity, getModelDir } from "./embedder"
+import { chunkFile } from "./chunker.js"
+import { getEmbedder, encodeEmbedding, decodeEmbedding, cosineSimilarity, getModelDir } from "./embedder.js"
 
-export { ensureModel } from "./embedder"
+export { ensureModel } from "./embedder.js"
 
 const DB_FILENAME = "semantic.sqlite"
 const MAX_FILE_BYTES = 1024 * 1024

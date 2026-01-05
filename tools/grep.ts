@@ -5,10 +5,10 @@
  */
 import * as fs from "fs/promises"
 import { tool } from "@opencode-ai/plugin"
-import { MAX_GREP_MATCHES } from "../util/constants"
-import { resolvePath, isBinaryFile } from "../util/paths"
-import { trimLine } from "../util/text"
-import { Match } from "../util/types"
+import { MAX_GREP_MATCHES } from "../util/constants.js"
+import { resolvePath, isBinaryFile } from "../util/paths.js"
+import { trimLine } from "../util/text.js"
+import type { Match } from "../util/types.js"
 
 function formatMatches(matches: Match[], truncated: boolean) {
   const outputLines = [`Found ${matches.length} matches`]

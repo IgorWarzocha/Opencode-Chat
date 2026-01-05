@@ -4,7 +4,7 @@
  * Mirrors core behavior with truncation hints for large result sets.
  */
 import { tool } from "@opencode-ai/plugin"
-import { resolvePath } from "../util/paths"
+import { resolvePath } from "../util/paths.js"
 
 export function createChatGlob(baseDir: string) {
   const run = async (args: { pattern: string; path?: string }) => {

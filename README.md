@@ -61,11 +61,11 @@ For new projects or directories with fewer than 100 files, just launch OpenCode.
 ```bash
 cd your-project
 
-# Download the embedding model first
-npx -p @howaboua/opencode-chat opencode-chat-download-model
+# Download the embedding model first (requires Bun)
+bunx --bun @howaboua/opencode-chat opencode-chat-download-model
 
 # Index your files (may take several minutes for large directories)
-npx -p @howaboua/opencode-chat opencode-chat-semantic-index --mode full
+bunx --bun @howaboua/opencode-chat opencode-chat-semantic-index --mode full
 ```
 
 After this one-time setup, OpenCode will launch normally and only re-index changed files.

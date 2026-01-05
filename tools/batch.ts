@@ -4,7 +4,7 @@
  * Limits tool calls to keep execution predictable.
  */
 import { tool } from "@opencode-ai/plugin"
-import { ToolCall } from "../util/types"
+import type { ToolCall } from "../util/types.js"
 
 type Runner = (params: Record<string, unknown>) => Promise<string>
 

@@ -4,7 +4,7 @@
  * Keeps output size bounded for predictable responses.
  */
 import { tool } from "@opencode-ai/plugin"
-import { MAX_OUTPUT_LENGTH } from "../util/constants"
+import { MAX_OUTPUT_LENGTH } from "../util/constants.js"
 
 export function createChatBash(baseDir: string) {
   const run = async (args: { command: string; timeout?: number; description: string }) => {

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 /**
  * Download embedding model for semantic search.
  * Usage: npx @howaboua/opencode-chat opencode-chat-download-model

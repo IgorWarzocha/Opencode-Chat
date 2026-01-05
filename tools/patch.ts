@@ -4,7 +4,7 @@
  */
 import { tool } from "@opencode-ai/plugin"
 import * as path from "path"
-import { parsePatch, applyHunksToFiles, type Hunk } from "../util/patch"
+import { parsePatch, applyHunksToFiles, type Hunk } from "../util/patch.js"
 
 export function createChatPatch(baseDir: string) {
   const run = async (args: { patchText: string }) => {

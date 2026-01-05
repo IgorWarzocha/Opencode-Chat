@@ -4,8 +4,8 @@
  * Deletes the file when all tasks are completed.
  */
 import { tool } from "@opencode-ai/plugin"
-import { TodoItem } from "../util/types"
-import { readTodoFile, writeTodoFile } from "../util/todo"
+import type { TodoItem } from "../util/types.js"
+import { readTodoFile, writeTodoFile } from "../util/todo.js"
 
 export const todoSchema = tool.schema.object({
   content: tool.schema.string().describe("Brief description of the task"),

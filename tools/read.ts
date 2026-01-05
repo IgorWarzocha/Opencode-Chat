@@ -5,9 +5,9 @@
  */
 import * as fs from "fs/promises"
 import { tool } from "@opencode-ai/plugin"
-import { DEFAULT_READ_LIMIT } from "../util/constants"
-import { resolvePath, isBlockedEnvPath, isImageExtension, isBinaryFile } from "../util/paths"
-import { trimLine } from "../util/text"
+import { DEFAULT_READ_LIMIT } from "../util/constants.js"
+import { resolvePath, isBlockedEnvPath, isImageExtension, isBinaryFile } from "../util/paths.js"
+import { trimLine } from "../util/text.js"
 
 export function createChatRead(baseDir: string) {
   const run = async (args: { filePath: string; offset?: number; limit?: number }) => {

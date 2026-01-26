@@ -22,13 +22,13 @@
     "fastembed": "latest"
   },
   "peerDependencies": {
-    "@opencode-ai/plugin": "^1.0.201"
+    "@opencode-ai/plugin": "^1.1.35"
   },
   "devDependencies": {
-    "@opencode-ai/plugin": "^1.0.201",
-    "@types/node": "^20.0.0",
+    "@opencode-ai/plugin": "^1.1.35",
+    "@types/node": "^20.19.30",
     "bun-types": "latest",
-    "typescript": "^5.7.0"
+    "typescript": "^5.9.3"
   },
   "files": [
     "dist",

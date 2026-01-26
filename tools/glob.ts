@@ -6,7 +6,9 @@
 import { tool } from "@opencode-ai/plugin"
 import { resolvePath } from "../util/paths.js"
 
-export function createChatGlob(baseDir: string) {
+import type { ChatTool } from "../util/types"
+
+export function createChatGlob(baseDir: string): ChatTool {
   const run = async (args: { pattern: string; path?: string }) => {
     const searchRoot = resolvePath(baseDir, args.path ?? baseDir)
     const glob = new Bun.Glob(args.pattern)
@@ -35,7 +37,7 @@ export function createChatGlob(baseDir: string) {
 
   return {
     id: "chat_glob",
-    run,
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Find files by pattern.
 

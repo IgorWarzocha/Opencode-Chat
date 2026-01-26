@@ -13,9 +13,13 @@ import { createChatBatch } from "./batch"
 import { createChatSkill } from "./skill"
 import { createChatRemember } from "./remember"
 import { createChatSemanticSearch } from "./semantic-search"
+import { readTodoFile } from "../util/todo.js"
 import type { ToolDefinition } from "@opencode-ai/plugin"
+import type { ChatTool } from "../util/types"
 
-export function createChatTools(baseDir: string, repoRoot: string, todoPath: string) {
+type ChatToolsCollection = { tools: Record<string, ToolDefinition>; runners: Record<string, (p: Record<string, unknown>) => Promise<string>>; toolIds: string[] }
+
+export function createChatTools(baseDir: string, repoRoot: string, todoPath: string): ChatToolsCollection {
   const read = createChatRead(baseDir)
   const edit = createChatEdit(baseDir, repoRoot)
   const write = createChatWrite(baseDir, repoRoot)
@@ -40,7 +44,7 @@ export function createChatTools(baseDir: string, repoRoot: string, todoPath: str
     [semantic.id]: (p) => semantic.run(p as Parameters<typeof semantic.run>[0]),
   }
 
-  const batch = createChatBatch(runners, todo.read.run)
+  const batch = createChatBatch(runners, () => readTodoFile(todoPath).then(todos => JSON.stringify(todos, null, 2)))
 
   const tools: Record<string, ToolDefinition> = {
     [read.id]: read.tool,

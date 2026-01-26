@@ -8,7 +8,9 @@ import path from "path"
 import { tool } from "@opencode-ai/plugin"
 import { resolvePath } from "../util/paths.js"
 
-export function createChatWrite(baseDir: string, repoRoot: string) {
+import type { ChatTool } from "../util/types"
+
+export function createChatWrite(baseDir: string, repoRoot: string): ChatTool {
   const run = async (args: { content: string; filePath: string }) => {
     const filePath = resolvePath(baseDir, args.filePath)
     await fs.mkdir(path.dirname(filePath), { recursive: true })
@@ -19,7 +21,7 @@ export function createChatWrite(baseDir: string, repoRoot: string) {
 
   return {
     id: "chat_write",
-    run,
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Write file contents.
 

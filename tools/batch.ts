@@ -8,7 +8,9 @@ import type { ToolCall } from "../util/types.js"
 
 type Runner = (params: Record<string, unknown>) => Promise<string>
 
-export function createChatBatch(runners: Record<string, Runner>, todoRead: () => Promise<string>) {
+import type { ChatTool } from "../util/types"
+
+export function createChatBatch(runners: Record<string, Runner>, todoRead: () => Promise<string>): ChatTool {
   const allRunners: Record<string, Runner> = {
     ...runners,
     chat_todoread: async () => todoRead(),
@@ -28,7 +30,7 @@ export function createChatBatch(runners: Record<string, Runner>, todoRead: () =>
 
   return {
     id: "chat_batch",
-    run: async (args: { tool_calls: ToolCall[] }) => run(args),
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Run multiple tools at once.
 

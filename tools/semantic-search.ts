@@ -8,7 +8,9 @@ import { semanticSearch } from "../semantic/index.js"
 
 const DEFAULT_LIMIT = 5
 
-export function createChatSemanticSearch(worktree: string) {
+import type { ChatTool } from "../util/types"
+
+export function createChatSemanticSearch(worktree: string): ChatTool {
   const run = async (args: { query: string; limit?: number }) => {
     const query = args.query.trim()
     if (!query) throw new Error("Query cannot be empty")
@@ -39,7 +41,7 @@ export function createChatSemanticSearch(worktree: string) {
 
   return {
     id: "chat_semantic_search",
-    run,
+    run: run as (...args: unknown[]) => Promise<string>,
     tool: tool({
       description: `Semantic search over project files using local embeddings.
 
